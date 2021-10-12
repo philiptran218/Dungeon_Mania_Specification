@@ -6,7 +6,8 @@
 
 ## 0. Changelog
 
-* 12 Oct 21 - Fix typos, remove references to user stories, fix file path
+- 12 Oct 10pm - Fix typos, remove references to user stories, fix file path
+- 13 Oct 4am - Add credits to readme.
 
 ## 1. Aims
 
@@ -866,3 +867,7 @@ Relevant scholarship authorities will be informed if students holding scholarshi
 Do not provide or show your project work to any other person, except for your group and the teaching staff of COMP2511. If you knowingly provide or show your assignment work to another person for any reason, and work derived from it is submitted you may be penalised, even if the work was submitted without your knowledge or consent. This may apply even if your work is submitted by a third party unknown to you.
 
 Note, you will not be penalised if your work has the potential to be taken without your consent or knowledge.
+
+## 15. Credits
+
+Most assets were taken from public domain sources, but a few require explicit referencing/credits.  You can find the credits [here](credits.md).
