@@ -6,6 +6,8 @@
 
 ## 0. Changelog
 
+* 12 Oct 21 - Fix typos, remove references to user stories, fix file path
+
 ## 1. Aims
 
 * Apply object-oriented programming principles and design patterns
@@ -78,7 +80,7 @@ In addition to the character, the game contains the following moving entities:
 | Entity    | Image         | Description       |
 | --------- | --------------| ------------------|
 | Treasure  | <img src="images/treasure.png" /> | Can be collected by the character. |
-| Key       | <img src="images/key.png" /> | Can be picked up by the player when they move into the square containing it. They character can carry only one key at a time, and only one door has a lock that fits the key. The key disappears once it is used to open its corresponding door |
+| Key       | <img src="images/key.png" /> | Can be picked up by the player when they move into the square containing it. The character can carry only one key at a time, and only one door has a lock that fits the key. The key disappears once it is used to open its corresponding door |
 | Health Potion | <img src="images/blue_potion.png" /> | When a character picks up a health potion, they may consume it at any time and they will immediately regenerate to full health. Health potions may only be consumed once. |
 | Invincibility Potion | <img src="images/purple_potion.png" /> | When a character picks up an Invincibility potion, they may consume it at any time. Any battles that occur when the character has the effects of the potion end immediately, with the character immediately winning. Because of this, all enemies will run away from the character when they are invincible. The effects of the potion only last for a limited time. |
 | Invisibility Potion | <img src="images/green_potion.png" width="40" />| When a player picks up an invisibility potion, they may consume it at any time and they immediately become invisible and can move past all other entities undetected. |
@@ -158,7 +160,7 @@ You will need to create an approximate timeline. **In this milestone, you will o
 For each week, create a list of objectives to achieve in that week, and state which team member is allocated to each objective.
 
 * You can include notes such as team member availability in the plan and meeting times as well.
-* Tasks only need to be broken down and delegated at the feature level, which you can ascertain from your user stories and acceptance criteria.
+* Tasks only need to be broken down and delegated at the feature level.
 
 There are no strict guidelines for how this plan should be formatted or structured - it just needs to be understandable by your tutor.
 
@@ -574,7 +576,7 @@ Runs a server for Dungeon Mania.
 </td>
 </tr>
 <td> Position.java, Direction.java, and FileLoader.java </td>
-<td>src/main/java/dungeonmania/util/Position.java, src/main/java/dungeonmania/util/FileLoader.java, and src/main/java/dungeonmania/util/Position.java</td>
+<td>src/main/java/dungeonmania/util/Position.java, src/main/java/dungeonmania/util/FileLoader.java, and src/main/java/dungeonmania/util/Direction.java</td>
 <td>
 See Section 7.1
 </td>
@@ -828,7 +830,7 @@ All team members must contribute code to the project to a generally similar degr
 
 ### 12.2.2 Non-code contribution
 
-All team members must contribute documentation and other non-code elements to the project to a generally similar degree. These include project management items such as the timeline, user stories, as well as other items such as the user interface design and code comments. Tutors will assess the degree to which you have contributed by looking at your git history, task board and by asking questions (essentially interviewing you) during your demonstration.
+All team members must contribute documentation and other non-code elements to the project to a generally similar degree. These include project management items such as the timeline, assumptions as well as other items such as the user interface design and code comments. Tutors will assess the degree to which you have contributed by looking at your git history, task board and by asking questions (essentially interviewing you) during your demonstration.
 
 Note that contributing more documentation is not a substitute for not contributing code. Everyone should have the opportunity to work on most, if not all elements of the project.
 
