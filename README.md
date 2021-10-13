@@ -107,7 +107,7 @@ Some entities can be built using a 'recipe' by the player, where entities are co
 
 | Entity    | Image         | Description       |
 | --------- | --------------| ------------------|
-| Bow  | <img src="images/bow.png" width="40" />| Can be crafted with 1 wood + 3 arrows. The player has unlimited shots with the bow, though it has a durability which wears down after a certain number of shots. Bow allow the character two attack twice (decrease the enemy's health) in a single round, to simulate being able to attack an enemy at range. |
+| Bow  | <img src="images/bow.png" width="40" />| Can be crafted with 1 wood + 3 arrows. The bow has a durability which wears down after a certain number of shots. Bow's allow the character two attack twice (decrease the enemy's health) in a single round, to simulate being able to attack an enemy at range. |
 | Shield    | <img src="images/shield.png" /> | Can be crafted with 2 wood + (1 treasure OR 1 key, where the key is no longer usable as itself afterwards as it has been melted). Shields decrease the effect of enemy attacks. |
 
 ### 3.6 Battles
@@ -335,29 +335,16 @@ Where <code>dungeonId</code> is the unique identifier for the dungeon, <code>dun
 ```java
 public EntityResponse(String id,
                       String type,
-                      Position position)
+                      Position position,
+                      boolean isInteractable)
 ```
 
 </td>
 <td>
-Where <code>id</code> is the unique identifier for the respective entity, <code>type</code> is the type of entity (lowercase, see Section 3 for names) and <code>position</code> is the x, y, z (layer) position of the entity.
+Where <code>id</code> is the unique identifier for the respective entity, <code>type</code> is the type of entity (lowercase, see Section 3 for names) and <code>position</code> is the x, y, z (layer) position of the entity, and <code>isInteractable</code> refers to if the entity can receive interaction updates from frontend.
 </td>
 </tr>
 
-<tr>
-<td>
-
-```java
-public GameResponse(String dungeonId,
-                    String name,
-                    LocalDateTime lastSaved)
-```
-
-</td>
-<td>
-Where <code>dungeonId</code> is the unique identifier for the dungeon, <code>name</code> is the name of the of the save file (i.e. `my_first_save.json`) and <code>lastSaved</code> is the last date and time the game was saved. If the game has not been saved, this field is <code>null</code>
-</td>
-</tr>
 <tr>
 <td>
 
@@ -435,7 +422,7 @@ IllegalArgumentException:
 <td>
 
 ```java
-public GameResponse loadGame(String id)
+public DungeonResponse loadGame(String id)
 throws IllegalArgumentException
 ```
 
@@ -454,13 +441,13 @@ IllegalArgumentException:
 <td>
 
 ```java
-public List<GameResponse> allGames()
+public List<String> allGames()
 ```
 
 </td>
 <td>
 
-Returns a list containing all the games that are currently stored.
+Returns a list containing all the saved games that are currently stored.
 
 </td>
 <td>
@@ -598,7 +585,7 @@ See Section 7.1
 </tr>
 <tr>
 <td>
-DungeonResponse.java, EntityResponse.java, GameResponse.java, GenericResponseWrapper.java, and ItemResponse.java
+DungeonResponse.java, EntityResponse.java, GenericResponseWrapper.java, and ItemResponse.java
 </td>
 <td>
 src/main/java/dungeonmania/response/models/
