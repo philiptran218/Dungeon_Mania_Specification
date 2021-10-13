@@ -10,6 +10,7 @@
 - 13 Oct 4am - Add credits to readme.
 - 13 Oct 5am - Reduce insanity of mercenary and spider spawns.
 - 13 Oct 4pm - Fix reference implementation release date, section 5 numbering, replace clear with interact method
+- 13 Oct 9pm - Setup Instructions
 
 ## 1. Aims
 
@@ -33,6 +34,8 @@ Penguin Pty Ltd has sub-contracted two software firms:
 Furthermore, there is a rival company called Spheniscidae Pty Ltd which has already produced a solution which you can refer to as a possible sample solution.  The specification leaves a lot of room to interpret it so the sample solution may diverge from your solution.
 
 [The reference implementation]() will be released by Friday of Week 5.
+
+[There are setup instructions here](SETUP.md)
 
 ## 3. Requirements: The Rules of the Game
 
