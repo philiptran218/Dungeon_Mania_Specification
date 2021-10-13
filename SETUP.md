@@ -53,5 +53,5 @@ You can either run `gradle test` or a bit more nicely go to the test file and cl
 
 ## What's next?
 
-[I recommend you follow the FRONTEND guide](FRONTEND.md)
+[We recommend you follow the FRONTEND guide](FRONTEND.md)
 

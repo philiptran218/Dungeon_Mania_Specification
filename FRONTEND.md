@@ -16,7 +16,7 @@ When you run the project you'll see a screen like below;
 
 Let's change the second subtitle (the one that says `Backend created by <your names here>`).  How do we do this?  Well it's actually extraordinarily easy!  We don't even need to rerun the application.
 
-We just need to find a file called `src/main/resources/languages/en_US.json` (currently we have no language selector, but that may be a requested feature that we'll implement in the future).  I've copied the file below for your reference.
+We just need to find a file called `src/main/resources/languages/en_US.json` (currently we have no language selector, but that may be a requested feature that we'll implement in the future).  We've copied the file below for your reference.
 
 ```json
 {
