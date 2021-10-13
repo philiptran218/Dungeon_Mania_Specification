@@ -51,3 +51,7 @@ You can either run `gradle test` or a bit more nicely go to the test file and cl
 
 > How to debug tests?  You just have to right click and then debug test.
 
+## What's next?
+
+[I recommend you follow the FRONTEND guide](FRONTEND.md)
+
