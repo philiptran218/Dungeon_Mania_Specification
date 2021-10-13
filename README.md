@@ -9,6 +9,7 @@
 - 12 Oct 10pm - Fix typos, remove references to user stories, fix file path
 - 13 Oct 4am - Add credits to readme.
 - 13 Oct 5am - Reduce insanity of mercenary and spider spawns.
+- 13 Oct 4pm - Fix reference implementation release date, section 5 numbering, replace clear with interact method
 
 ## 1. Aims
 
@@ -31,7 +32,7 @@ Penguin Pty Ltd has sub-contracted two software firms:
 
 Furthermore, there is a rival company called Spheniscidae Pty Ltd which has already produced a solution which you can refer to as a possible sample solution.  The specification leaves a lot of room to interpret it so the sample solution may diverge from your solution.
 
-[The reference implementation]() will be released by Friday of Week 4.
+[The reference implementation]() will be released by Friday of Week 5.
 
 ## 3. Requirements: The Rules of the Game
 
@@ -210,7 +211,7 @@ For this milestone, your design will need to make use of **at least 3 patterns**
 
 It is a good idea to invest time into your design in this milestone, as a poor design in this Milestone will mean you aren't able to easily adapt your code for Milestone 3 when the requirements evolve. You will be assessed in Milestone 3 on how well you adapted to the changes in requirements and how appropriately you extended and reused your Milestone 2 code.
 
-### 5.3 Testing and Coverage
+### 5.2 Testing and Coverage
 
 You will need to write:
 
@@ -219,13 +220,13 @@ You will need to write:
 * You will need to write your code test-first and have git commits which show evidence of this;
 * Coverage will be assessed.
 
-### 5.4 Assumptions
+### 5.3 Assumptions
 
 As you design and implement the game, you will undoubtedly realise other ambiguities in the game requirements. Modify and add to your `assumptions.md` file based on this and any feedback on your Milestone 1 assumptions.
 
 All assumptions you make should have at least one test which ensures that assumption works as expected. 
 
-### 5.5 Submission
+### 5.4 Submission
 
 To submit, make a tag to show that your code at the current commit is ready for your submission using the command:
 
@@ -237,7 +238,7 @@ $ git push -f origin submission
 Or, you can create one via the GitLab website by going to Repository > Tags > New Tag.
 If you do not make a submission tag, we will take the last commit on your master branch before the deadline for your submission.
 
-### 5.6 Marking Criteria
+### 5.5 Marking Criteria
 
 | Criteria    | Description |
 |:----------- |:----- |
@@ -527,15 +528,24 @@ InvalidActionException:
 <td>
 
 ```java
-public DungeonResponse clear()
+public DungeonResponse interact(String entityId)
+throws IllegalArgumentException, InvalidActionException
 ```
 
 </td>
 <td>
-Erases all saved and current games.
+Interacts with a mercenary (where the character bribes the mercenary) or a zombie spawner, where the character destroys the spawner.
 </td>
 <td>
-N/A
+IllegalArgumentException:
+<ul>
+<li>If <code>entityId</code> is not a valid entity ID</li>
+</ul>
+InvalidActionException
+<ul>
+<li>If the player is not cardinally adjacent to the given entity</li>
+<li>If the player does not have any gold and attempts to bribe a mercenary</li>
+<li>If the player does not have a weapon and attempts to destroy a spawner</li>
 </td>
 </tr>
 </table>
