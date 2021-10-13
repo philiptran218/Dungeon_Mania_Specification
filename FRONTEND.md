@@ -1,3 +1,5 @@
+[[_TOC_]]
+
 # Influencing the look of the game and controlling rendering
 
 > This will factor more into Milestone3, but likely you'll have to modify parts of this for Milestone2 (very small parts).
@@ -159,7 +161,7 @@ As you've probably noticed, the frontend doesn't really know what an "entity" is
 
 As a more indepth explanation... we can talk about 'z sorting' which is how you sort which entity / image should appear above or below which other entities.  The way this is exposed to you is through the use of a third axis `z` or `layer`.  That is for example the position `(1, 1, 0)` would be at `x = 1, y = 1` and at the layer `0` which is below `(1, 1, 1)` for example.  It's recommended you standardise layers (i.e. place all items on the same layer, and so on...) rather than just randomly guess in each one.  Entities are allowed to move between layers.
 
-## Reference
+# Reference
 
 This project offers a lot of flexibility for you to customise the game's visuals/audio/mechanics to what you want.  The only important consideration is that you shouldn't reduce the complexity of the solution (that is you can make lateral changes but can't simplify how a certain mechanic works).
 
@@ -170,7 +172,7 @@ In order to help you, the frontend is extremely flexible and offers you the abil
 
 The system is intentionally not made to be perfect and you may have to work around some awkward design choices (as you would have to in real life) to come up with a clean and simple solution.
 
-## Changing graphics and styling
+# Changing graphics and styling
 
 | :information_source:  NOTE: This is more intended for Milestone 3 where you'll get marks for doing extensions like this, but feel free to start in Milestone 2 if you find time. |
 | --- |
@@ -188,7 +190,7 @@ To enable alternate graphics you need to setup the concept of a "skin.json" file
 
 The default skin (`src/resources/skins/default.json`) will show you all the various things you can change, note that entities (tiles/characters/items/...) aren't listed in the skin since their icon is specified as part of the entity itself.
 
-### TileSets
+## TileSets
 
 Sometimes you want to randomise images based on some weighting, you can do this through the use of tilesets.  From the default asset file.
 
@@ -203,11 +205,21 @@ Sometimes you want to randomise images based on some weighting, you can do this 
 
 You can think of each of those numbers as the amount of raffle tickets that asset bought, when we go and pick out the winner if you are have more tickets you are more likely to win (and be rendered), so it's not percentage based.  This makes it much more convenient to extend these lists and just generally is nicer to work with.
 
+## Goals
+
+You'll probably want to render goals correctly at some point, like below;
+
+![Screen Shot 2021-10-14 at 3.17.41 am.png](./frontend/goals.png)
+
+It's actually a lot easier than you might think!  The above example is literally just `":treasure AND :boulder"` (literally go and hardcode it in your dungeon response and see!).  How, this works is that any bit of text that is prefixed with `:` in goals will resolve to an image rather than raw text.  The image typically being the entity type.  You can do some pretty funky stuff here such as the following; `":treasure(5) AND :boulder(4)/:switch(3)"` (to indicate that we have 5 pieces of treasure to pickup, 3 switches to hold down left, and 4 boulders that we *can* use).
+
+![Screen Shot 2021-10-14 at 3.25.29 am.png](./frontend/adv_goals.png)
+
 ## Defining Animations & Audio Cues
 
 You can define a series of animation/audio cues to play during specific events in 2 ways, one is reactive and the other is proactive.
 
-### 9.2.1 Through the skin file
+### Through the skin file
 
 You can specify background music through the skin file as follows;
 
@@ -221,7 +233,7 @@ You can specify background music through the skin file as follows;
 
 The default skin (`src/resources/skins/default.json`) will show you all the various things you can change.  This includes most events such as clicking on a button or background music.
 
-### 9.2.2 Animations
+### Animations
 
 You may want to introduce different sounds based on different scenarios for example having different sounds for building different weapons, or having different attacking noises/damage noises for entities.
 

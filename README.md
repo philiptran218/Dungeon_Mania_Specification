@@ -11,6 +11,8 @@
 - 13 Oct 5am - Reduce insanity of mercenary and spider spawns.
 - 13 Oct 4pm - Fix reference implementation release date, section 5 numbering, replace clear with interact method
 - 13 Oct 9pm - Setup Instructions
+- 13 Oct 11pm - Frontend Instructions
+- 14 Oct 4am - Added Goal instructions to Frontend guide.
 
 ## 1. Aims
 
