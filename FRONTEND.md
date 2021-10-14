@@ -182,7 +182,7 @@ To enable alternate graphics you need to setup the concept of a "skin.json" file
 ```json
 {
     "main_menu": {
-        "background_image": "/images/MyFile.jpg",
+        "background_image": "images/MyFile.jpg",
         "text_color": "rgb(255, 0, 0)"
     }
 }
@@ -221,17 +221,45 @@ You can define a series of animation/audio cues to play during specific events i
 
 ### Through the skin file
 
+> A few concessions around music are; it won't play when the tab isn't active, you'll have to click on the game atleast once for the music to start playing if you are on a chromium browser (this is a restriction put in place by Chrome).
+
 You can specify background music through the skin file as follows;
 
 ```json
 {
     "main_menu": {
-        "background_music": "/music/myMusic.mp3"
+        "background_music": "audio/myMusic.mp3"
+        ...
+    },
+    "game": {
+        "background_music": "audio/otherMusic.mp3"
+        ...
     }
 }
 ```
 
+We support; mp3's and ogg's.  Keep in mind that in Firefox mp3's may not work so you may want to convert them to ogg's.  If you 
+
+> The actual folder name here doesn't matter (funnily enough as long as they sit inside `src/resources` the path is purely for style reasons)
+
 The default skin (`src/resources/skins/default.json`) will show you all the various things you can change.  This includes most events such as clicking on a button or background music.
+
+#### Randomising Audio
+
+You can randomise audio through the use of a tileset like configuration as per before...
+
+```json
+{
+    "main_menu": {
+        "background_music": {
+            "audio/a.mp3": 3,
+            "audio/b.mp4": 10
+        }
+    }
+}
+```
+
+Once a randomised track has finished it'll randomly pick the next one to play.  It won't however play the same song twice (unless that's the only song).
 
 ### Animations
 
