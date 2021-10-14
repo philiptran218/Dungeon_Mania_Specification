@@ -13,6 +13,7 @@
 - 13 Oct 9pm - Setup Instructions
 - 13 Oct 11pm - Frontend Instructions
 - 14 Oct 4am - Added Goal instructions to Frontend guide.
+- 14 Oct 11am - Fixed constructor definition for DungeonResponse and added link to the frontend reference for AnimationQueue.
 
 ## 1. Aims
 
@@ -325,7 +326,7 @@ public DungeonResponse(String dungeonId,
                        String dungeonName, 
                        List<EntityResponse> entities,
                        List<ItemResponse> inventory,
-                       List<ItemResponse> buildables,
+                       List<String> buildables,
                        String goals)
 ```
 
@@ -373,8 +374,11 @@ public Position(int x, int y, int layer)
 <td>
 Where <code>x</code>, <code>y</code> are the co-ordinates of the cell (the top-left cell is 0,0) and <code>layer</code> is the Z-position of the entity on the screen (a higher layer is "in front" of a lower layer visually)
 </td>
+</tr>
 
 </table>
+
+> Note: [there is also an `AnimationQueue` object and constructor that you can find here](https://gitlab.cse.unsw.edu.au/COMP2511/21T3/project-specification/-/blob/master/FRONTEND.md#animationqueue) but this isn't likely to be useful till the latter parts of Milestone 2 (and Milestone 3).
 
 ### 7.2 Interface Methods
 
