@@ -221,7 +221,7 @@ You can define a series of animation/audio cues to play during specific events i
 
 ### Through the skin file
 
-> A few concessions around music are; it won't play when the tab isn't active, you'll have to click on the game atleast once for the music to start playing if you are on a chromium browser (this is a restriction put in place by Chrome).
+> A few concessions around music are; it won't play when the tab isn't active, you'll have to click on the game atleast once for the music to start playing if you are on a chromium browser (this is a restriction put in place by Chrome).  There is also a little mute button on the bottom left.
 
 You can specify background music through the skin file as follows;
 
