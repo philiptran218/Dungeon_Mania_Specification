@@ -287,6 +287,8 @@ You can combine multiple modifiers into one i.e. `translate (1, 2, 0), over 1s, 
 | :warning:  We provide a minimal structure to help you do this, since a major part of writing the code here should be focused on the design of how to cleanly write animation state.  We provide the expected response in `src/main/dungeonmania/response/models/AnimationQueue.java` but you should design how you build this queue. |
 | --- |
 
+### AnimationQueue
+
 > AnimationQueue.java
 
 ```
