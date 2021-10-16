@@ -14,6 +14,7 @@
 - 13 Oct 11pm - Frontend Instructions
 - 14 Oct 4am - Added Goal instructions to Frontend guide.
 - 14 Oct 11am - Fixed constructor definition for DungeonResponse and added link to the frontend reference for AnimationQueue.
+- 16 Oct 11pm - Clarified spider
 
 ## 1. Aims
 
@@ -80,7 +81,7 @@ In addition to the character, the game contains the following moving entities:
 
 | Entity    | Image         | Description       |
 | --------- | --------------| ------------------|
-| Spider    | <img src="images/spider.png" width="40" /> | Spiders spawn at random locations in the dungeon at the beginning of the game. When the spider spawns, they immediately move the 1 square upwards (towards the top of the screen) and then begin 'circling' their spawn spot (see a [visual example here](images/spider_movement.png)). Spiders are able to traverse through walls, doors, switches, portals, exits (which have no effect), but not boulders, in which case it will reverse direction.  There can only be a max of atleast 4 spiders at a time before the spawners should stop spawning them (this is not a hard limit and you should feel free to change it given it's 'atleast' 4). |
+| Spider    | <img src="images/spider.png" width="40" /> | Spiders spawn at random locations in the dungeon at the beginning of the game. When the spider spawns, they immediately move the 1 square upwards (towards the top of the screen) and then begin 'circling' their spawn spot (see a [visual example here](images/spider_movement.png)). Spiders are able to traverse through walls, doors, switches, portals, exits (which have no effect), but not boulders, in which case it will reverse direction.  There is a maximum number of spiders at a time (what exactly is up to you but must be atleast 4). |
 | Zombie Toast | <img src="images/zombie.png" /> | Zombies spawn at zombie spawners and move in random directions. Zombies are limited by the same movement constraints as the character, except portals have no effect on them. |
 | Mercenary | <img src="images/ranger.png" /> | On maps with atleast one enemy, mercenaries spawn at the entry location periodically. They constantly move towards the character, stopping if they cannot move any closer. Mercenaries are limited by the same movement constraints as the character. All mercenaries are considered hostile, unless the character can bribe them with a certain amount of gold; in which case they become allies. As an ally, once it reaches the player it simply follows the player around. |
 
