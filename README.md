@@ -419,12 +419,7 @@ throws IllegalArgumentException
 
 </td>
 <td>
-Saves the current game state with the given ID.
-</td>
-<td>
-IllegalArgumentException:
-<ul>
-<li>If <code>id</code> is not a valid game id</li>
+Saves the current game state with the given name.
 </td>
 </tr>
 
