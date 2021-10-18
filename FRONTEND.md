@@ -215,6 +215,10 @@ It's actually a lot easier than you might think!  The above example is literally
 
 ![Screen Shot 2021-10-14 at 3.25.29 am.png](./frontend/adv_goals.png)
 
+### How to signal that the game has finished
+
+You can signal that the game has finished by returning an empty string of goals.  This will only cause it to trigger an end game alert *IF* you've previously sent goals for that game.
+
 ## Defining Animations & Audio Cues
 
 You can define a series of animation/audio cues to play during specific events in 2 ways, one is reactive and the other is proactive.
