@@ -38,7 +38,10 @@ Penguin Pty Ltd has sub-contracted two software firms:
 
 Furthermore, there is a rival company called Spheniscidae Pty Ltd which has already produced a solution which you can refer to as a possible sample solution.  The specification leaves a lot of room to interpret it so the sample solution may diverge from your solution.
 
-[The reference implementation]() will be released by Friday of Week 5.
+[A possible simple implementation](https://cs2511-reference-implementation.azurewebsites.net/app/) has been released.
+
+| :warning:  As with any software, bugs could and will exist in the reference implementation.  Furthermore, the project is *VERY* vague and a lot is left up to interpretation (intentionally so).  Don't take our interpretations as gospel.  Also a lot of UX improvements such as animations were left out in our implementation just due to the fact that it's very much a 'baseline'. |
+| --- |
 
 [There are setup instructions here](SETUP.md)
 
