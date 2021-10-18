@@ -15,6 +15,7 @@
 - 14 Oct 4am - Added Goal instructions to Frontend guide.
 - 14 Oct 11am - Fixed constructor definition for DungeonResponse and added link to the frontend reference for AnimationQueue.
 - 16 Oct 11pm - Clarified spider
+- 18 Oct 5pm - Update interface for clarity on itemUsed in tick - ID of the item used, not the type
 
 ## 1. Aims
 
@@ -464,7 +465,7 @@ N/A
 <td>
 
 ```java
-public DungeonResponse tick(String itemUsed,
+public DungeonResponse tick(String itemUsedId,
     Direction movementDirection)
 throws IllegalArgumentException, InvalidActionException
 ```
@@ -481,7 +482,7 @@ Ticks the game state. When a tick occurs:
 <td>
 IllegalArgumentException:
 <ul>
-<li>If <code>itemUsed</code> is not one of bomb, invincibility_potion, invisibility_potion</li>
+<li>If <code>itemUsed</code> is not a bomb, invincibility_potion, or an invisibility_potion</li>
 </ul>
 InvalidActionException:
 <ul>
