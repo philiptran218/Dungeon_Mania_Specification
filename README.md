@@ -17,6 +17,7 @@
 - 16 Oct 11pm - Clarified spider
 - 18 Oct 5pm - Update interface for clarity on itemUsed in tick - ID of the item used, not the type
 - 19 Oct 4pm - Add notes on durability for battle items
+- 19 Oct 9pm - Battles occur within a single tick
 
 ## 1. Aims
 
@@ -124,7 +125,7 @@ Some entities can be built using a 'recipe' by the player, where entities are co
 
 ### 3.6 Battles
 
-A battle takes place when the character and an enemy are in the same cell. A 'round' of a battle occurs as follows:
+A battle takes place when the character and an enemy are in the same cell, within a single tick. A 'round' of a battle occurs as follows:
 
 ```
 Character Health = Character Health - ((Enemy Health * Enemy Attack Damage) / 10)
