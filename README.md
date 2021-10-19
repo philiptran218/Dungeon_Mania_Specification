@@ -16,6 +16,7 @@
 - 14 Oct 11am - Fixed constructor definition for DungeonResponse and added link to the frontend reference for AnimationQueue.
 - 16 Oct 11pm - Clarified spider
 - 18 Oct 5pm - Update interface for clarity on itemUsed in tick - ID of the item used, not the type
+- 19 Oct 4pm - Add notes on durability for battle items
 
 ## 1. Aims
 
@@ -102,7 +103,7 @@ In addition to the character, the game contains the following moving entities:
 | Arrows    | <img src="images/arrow.png" width="40" /> | Can be picked up by the player. |
 | Bomb      | <img src="images/bomb.png" width="40" /> | Can be collected by the character. When a character places a bomb cardinally adjacent to a switch, if a boulder is pushed onto the switch then the bomb explodes, destroying all entities in the bomb's blast radius, except for the character. |
 | Sword | <img src="images/sword.png" width="40" /> | A standard melee weapon. Swords can be collected by the character and used in battles. Each sword has a specific durability that dictates the number of times it can be used before it deteriorates. |
-| Armour | <img src="images/armour.png" /> | Body armour which provides defence and halves enemy attack. A small proportion of zombies randomly spawn with armour, which the character can take if they defeat a zombie in battle. Some mercenaries have armour, which the character can take if they defeat a mercenary in a battle. |
+| Armour | <img src="images/armour.png" /> | Body armour which provides defence and halves enemy attack. A small proportion of zombies randomly spawn with armour, which the character can take if they defeat a zombie in battle. Some mercenaries have armour, which the character can take if they defeat a mercenary in a battle. Each piece of armour has a specific durability that dictates the number of times it can be used before it deteriorates. |
 
 ### 3.4 Rare Collectable Entities
 
@@ -119,7 +120,7 @@ Some entities can be built using a 'recipe' by the player, where entities are co
 | Entity    | Image         | Description       |
 | --------- | --------------| ------------------|
 | Bow  | <img src="images/bow.png" width="40" />| Can be crafted with 1 wood + 3 arrows. The bow has a durability which wears down after a certain number of shots. Bow's allow the character two attack twice (decrease the enemy's health) in a single round, to simulate being able to attack an enemy at range. |
-| Shield    | <img src="images/shield.png" /> | Can be crafted with 2 wood + (1 treasure OR 1 key, where the key is no longer usable as itself afterwards as it has been melted). Shields decrease the effect of enemy attacks. |
+| Shield    | <img src="images/shield.png" /> | Can be crafted with 2 wood + (1 treasure OR 1 key, where the key is no longer usable as itself afterwards as it has been melted). Shields decrease the effect of enemy attacks. Each shield has a specific durability that dictates the number of times it can be used before it deteriorates. |
 
 ### 3.6 Battles
 
