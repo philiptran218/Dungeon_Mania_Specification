@@ -18,6 +18,7 @@
 - 18 Oct 5pm - Update interface for clarity on itemUsed in tick - ID of the item used, not the type
 - 19 Oct 4pm - Add notes on durability for battle items
 - 19 Oct 9pm - Battles occur within a single tick
+- 21 Oct 2pm - Clarify buildables argument in DungeonResponse constructor
 
 ## 1. Aims
 
@@ -339,7 +340,7 @@ public DungeonResponse(String dungeonId,
 
 </td>
 <td>
-Where <code>dungeonId</code> is the unique identifier for the dungeon, <code>dungeonName</code> is the name of the dungeon map being used (i.e. `maze.json`).
+Where <code>dungeonId</code> is the unique identifier for the dungeon, <code>dungeonName</code> is the name of the dungeon map being used (i.e. `maze.json`), and <code>buildables</code> is a list of buildable item types that the player can build, given their current inventory.
 </td>
 
 <tr>
