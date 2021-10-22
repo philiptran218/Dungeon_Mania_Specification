@@ -19,6 +19,7 @@
 - 19 Oct 4pm - Add notes on durability for battle items
 - 19 Oct 9pm - Battles occur within a single tick
 - 21 Oct 2pm - Clarify buildables argument in DungeonResponse constructor
+- 22 Oct 9pm - More detail on save/load game, broaden allowable items usable in tick itemUsed
 
 ## 1. Aims
 
@@ -426,7 +427,7 @@ throws IllegalArgumentException
 
 </td>
 <td>
-Saves the current game state with the given name.
+Saves the current game state with the given name so that if the application is terminated, the current game state can be reloaded and play can continue from where it left off.
 </td>
 </tr>
 
@@ -440,7 +441,7 @@ throws IllegalArgumentException
 
 </td>
 <td>
-Loads the game with the given id.
+Loads the game with the given id from the existing games saved.
 </td>
 <td>
 IllegalArgumentException:
@@ -488,7 +489,7 @@ Ticks the game state. When a tick occurs:
 <td>
 IllegalArgumentException:
 <ul>
-<li>If <code>itemUsed</code> is not a bomb, invincibility_potion, or an invisibility_potion</li>
+<li>If <code>itemUsed</code> is not a bomb, health_potion, invincibility_potion, or an invisibility_potion</li>
 </ul>
 InvalidActionException:
 <ul>
