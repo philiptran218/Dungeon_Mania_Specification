@@ -21,6 +21,7 @@
 - 21 Oct 2pm - Clarify buildables argument in DungeonResponse constructor
 - 22 Oct 9pm - More detail on save/load game, broaden allowable items usable in tick itemUsed
 - 24 Oct 4pm - Case where itemUsed is null in `tick`, clarify movement of enemies in peaceful mode
+- 24 Oct 10pm - Mercenaries can be bribed from 2 tiles away, note on one ring + JSON prefixes for all entities
 
 ## 1. Aims
 
@@ -72,54 +73,56 @@ The character, who is controlled by the player of the game can be moved up, down
 
 ### 3.2 Static Entities
 
-The game contains the following static entities:
+The game contains the following static entities. Entity types will start with the prefix specified in the provided JSON; for rendering purposes they can have different complete types (e.g. `boulder_1`).
 
-| Entity    | Image         | Description       |
-| --------- | --------------| ------------------|
-| Wall      | <img src="images/wall.png" /> | Blocks the movement of the character, enemies and boulders. |
-| Exit      | <img src="images/exit.png" /> | If the character goes through it, the puzzle is complete. |
-| Boulder   | <img src="images/boulder.png" width="40" /> | Acts like a wall in most cases. The only difference is that it can be pushed by the character into cardinally adjacent squares. The character is only strong enough to push <b>one</b> boulder at a time. |
-| Floor Switch | <img src="images/pressure_plate.png" /> | Switches behave like empty squares, so other entities can appear on top of them. When a boulder is pushed onto a floor switch, it is triggered. Pushing a boulder off the floor switch untriggers it. |
-| Door      | <img src="images/door.png" /> | Exists in conjunction with a single key that can open it. If the character holds the key, they can open the door by moving through it. Once open, it remains open. |
-| Portal       | <img src="images/portal.png" /> | Teleports entities to a corresponding portal. |
-| Zombie Toast Spawner | <img src="images/toaster.png" /> | Spawns zombie toasts every 20 ticks in an open square cardinally adjacent to the spawner. The character can destroy a zombie spawner if they have a weapon and are cardinally adjacent to the spawner. |
+| Entity    | JSON Prefix           | Image         | Description       |
+| --------- | --------------------- | --------------| ------------------|
+| Wall      | <code>wall</code>     | <img src="images/wall.png" /> | Blocks the movement of the character, enemies and boulders. |
+| Exit      | <code>exit</code>     | <img src="images/exit.png" /> | If the character goes through it, the puzzle is complete. |
+| Boulder   | <code>boulder</code>   | <img src="images/boulder.png" width="40" /> | Acts like a wall in most cases. The only difference is that it can be pushed by the character into cardinally adjacent squares. The character is only strong enough to push <b>one</b> boulder at a time. |
+| Floor Switch | <code>switch</code>     | <img src="images/pressure_plate.png" /> | Switches behave like empty squares, so other entities can appear on top of them. When a boulder is pushed onto a floor switch, it is triggered. Pushing a boulder off the floor switch untriggers it. |
+| Door      | <code>door</code>     | <img src="images/door.png" /> | Exists in conjunction with a single key that can open it. If the character holds the key, they can open the door by moving through it. Once open, it remains open. |
+| Portal       | <code>portal</code>   | <img src="images/portal.png" /> | Teleports entities to a corresponding portal. |
+| Zombie Toast Spawner | <code>zombie_toast_spawner</code>     | <img src="images/toaster.png" /> | Spawns zombie toasts every 20 ticks in an open square cardinally adjacent to the spawner. The character can destroy a zombie spawner if they have a weapon and are cardinally adjacent to the spawner. |
 
 ### 3.3 Moving Entities
 
-In addition to the character, the game contains the following moving entities:
+In addition to the character, the game contains the following moving entities. Entity types will start with the prefix specified in the provided JSON; for rendering purposes they can have different complete types (e.g. `mercenary_1`).
 
-| Entity    | Image         | Description       |
-| --------- | --------------| ------------------|
-| Spider    | <img src="images/spider.png" width="40" /> | Spiders spawn at random locations in the dungeon from the beginning of the game. When the spider spawns, they immediately move the 1 square upwards (towards the top of the screen) and then begin 'circling' their spawn spot (see a [visual example here](images/spider_movement.png)). Spiders are able to traverse through walls, doors, switches, portals, exits (which have no effect), but not boulders, in which case it will reverse direction.  There is a maximum number of spiders at a time (what exactly is up to you but must be atleast 4). |
-| Zombie Toast | <img src="images/zombie.png" /> | Zombies spawn at zombie spawners and move in random directions. Zombies are limited by the same movement constraints as the character, except portals have no effect on them. |
-| Mercenary | <img src="images/ranger.png" /> | On maps with atleast one enemy, mercenaries spawn at the entry location periodically. They constantly move towards the character, stopping if they cannot move any closer. Mercenaries are limited by the same movement constraints as the character. All mercenaries are considered hostile, unless the character can bribe them with a certain amount of gold; in which case they become allies. As an ally, once it reaches the player it simply follows the player around. |
+| Entity    | JSON Prefix           | Image         | Description       |
+| --------- | --------------------- | --------------| ------------------|
+| Spider    | <code>spider</code>   | <img src="images/spider.png" width="40" /> | Spiders spawn at random locations in the dungeon from the beginning of the game. When the spider spawns, they immediately move the 1 square upwards (towards the top of the screen) and then begin 'circling' their spawn spot (see a [visual example here](images/spider_movement.png)). Spiders are able to traverse through walls, doors, switches, portals, exits (which have no effect), but not boulders, in which case it will reverse direction.  There is a maximum number of spiders at a time (what exactly is up to you but must be atleast 4). |
+| Zombie Toast | <code>zombie_toast</code>   | <img src="images/zombie.png" /> | Zombies spawn at zombie spawners and move in random directions. Zombies are limited by the same movement constraints as the character, except portals have no effect on them. |
+| Mercenary | <code>mercenary</code> | <img src="images/ranger.png" /> | On maps with atleast one enemy, mercenaries spawn at the entry location periodically. They constantly move towards the character, stopping if they cannot move any closer. Mercenaries are limited by the same movement constraints as the character. All mercenaries are considered hostile, unless the character can bribe them with a certain amount of gold; in which case they become allies. As an ally, once it reaches the player it simply follows the player around. |
 
 ### 3.4 Collectable Entities
 
-| Entity    | Image         | Description       |
-| --------- | --------------| ------------------|
-| Treasure  | <img src="images/treasure.png" /> | Can be collected by the character. |
-| Key       | <img src="images/key.png" /> | Can be picked up by the player when they move into the square containing it. The character can carry only one key at a time, and only one door has a lock that fits the key. The key disappears once it is used to open its corresponding door |
-| Health Potion | <img src="images/blue_potion.png" /> | When a character picks up a health potion, they may consume it at any time and they will immediately regenerate to full health. Health potions may only be consumed once. |
-| Invincibility Potion | <img src="images/purple_potion.png" /> | When a character picks up an Invincibility potion, they may consume it at any time. Any battles that occur when the character has the effects of the potion end immediately, with the character immediately winning. Because of this, all enemies will run away from the character when they are invincible. The effects of the potion only last for a limited time. |
-| Invisibility Potion | <img src="images/green_potion.png" width="40" />| When a player picks up an invisibility potion, they may consume it at any time and they immediately become invisible and can move past all other entities undetected. |
-| Wood      | <img src="images/wood_big.png" width="40" /> | Can be collected by the player. |
-| Arrows    | <img src="images/arrow.png" width="40" /> | Can be picked up by the player. |
-| Bomb      | <img src="images/bomb.png" width="40" /> | Can be collected by the character. When a character places a bomb cardinally adjacent to a switch, if a boulder is pushed onto the switch then the bomb explodes, destroying all entities in the bomb's blast radius, except for the character. |
-| Sword | <img src="images/sword.png" width="40" /> | A standard melee weapon. Swords can be collected by the character and used in battles. Each sword has a specific durability that dictates the number of times it can be used before it deteriorates. |
-| Armour | <img src="images/armour.png" /> | Body armour which provides defence and halves enemy attack. A small proportion of zombies randomly spawn with armour, which the character can take if they defeat a zombie in battle. Some mercenaries have armour, which the character can take if they defeat a mercenary in a battle. Each piece of armour has a specific durability that dictates the number of times it can be used before it deteriorates. |
+Entity types will start with the prefix specified in the provided JSON; for rendering purposes they can have different complete types (e.g. `key_1`).
+
+| Entity        | JSON Prefix           | Image         | Description       |
+| ---------     | -----------           | --------------| ------------------|
+| Treasure      | <code>treasure</code> | <img src="images/treasure.png" /> | Can be collected by the character. |
+| Key           | <code>key</code> | <img src="images/key.png" /> | Can be picked up by the player when they move into the square containing it. The character can carry only one key at a time, and only one door has a lock that fits the key. The key disappears once it is used to open its corresponding door |
+| Health Potion | <code>health_potion</code> | <img src="images/blue_potion.png" /> | When a character picks up a health potion, they may consume it at any time and they will immediately regenerate to full health. Health potions may only be consumed once. |
+| Invincibility Potion | <code>invincibility_potion</code> | <img src="images/purple_potion.png" /> | When a character picks up an Invincibility potion, they may consume it at any time. Any battles that occur when the character has the effects of the potion end immediately, with the character immediately winning. Because of this, all enemies will run away from the character when they are invincible. The effects of the potion only last for a limited time. |
+| Invisibility Potion | <code>invisibility_potion</code> | <img src="images/green_potion.png" width="40" />| When a player picks up an invisibility potion, they may consume it at any time and they immediately become invisible and can move past all other entities undetected. |
+| Wood      | <code>wood</code> | <img src="images/wood_big.png" width="40" /> | Can be collected by the player. |
+| Arrows    | <code>arrow</code> | <img src="images/arrow.png" width="40" /> | Can be picked up by the player. |
+| Bomb      | <code>bomb</code> | <img src="images/bomb.png" width="40" /> | Can be collected by the character. When a character places a bomb cardinally adjacent to a switch, if a boulder is pushed onto the switch then the bomb explodes, destroying all entities in the bomb's blast radius, except for the character. |
+| Sword | <code>sword</code> | <img src="images/sword.png" width="40" /> | A standard melee weapon. Swords can be collected by the character and used in battles. Each sword has a specific durability that dictates the number of times it can be used before it deteriorates. |
+| Armour | <code>armour</code> | <img src="images/armour.png" /> | Body armour which provides defence and halves enemy attack. A small proportion of zombies randomly spawn with armour, which the character can take if they defeat a zombie in battle. Some mercenaries have armour, which the character can take if they defeat a mercenary in a battle. Each piece of armour has a specific durability that dictates the number of times it can be used before it deteriorates. |
 
 ### 3.4 Rare Collectable Entities
 
-Each time a character wins a battle, there is a small chance of winning a "rare item". Rare items include:
+Each time a character wins a battle, there is a small chance of winning a "rare item". Dungeons can be created with these, though that is not their primary use case. Rare items include:
 
-| Entity        | Image         | Description       |
-| ---------     | --------------| ------------------|
-| The One Ring  | <img src="images/the_one_ring.png" /> | If the Character is killed, it respawns with full health. Once The One Ring is used it is discarded. |
+| Entity        | JSON Prefix           | Image         | Description       |
+| ---------     | -----------           | --------------| ------------------|
+| The One Ring  | <code>one_ring</code> | <img src="images/the_one_ring.png" /> | If the Character is killed, it respawns with full health. Once The One Ring is used it is discarded. |
 
 ### 3.5 Buildable Entities
 
-Some entities can be built using a 'recipe' by the player, where entities are combined to form more complex and useful entities. 
+Some entities can be built using a 'recipe' by the player, where entities are combined to form more complex and useful entities.
 
 | Entity    | Image         | Description       |
 | --------- | --------------| ------------------|
@@ -240,7 +243,7 @@ You will need to write:
 
 As you design and implement the game, you will undoubtedly realise other ambiguities in the game requirements. Modify and add to your `assumptions.md` file based on this and any feedback on your Milestone 1 assumptions.
 
-All assumptions you make should have at least one test which ensures that assumption works as expected. 
+All assumptions you make should have at least one test which ensures that assumption works as expected.
 
 ### 5.4 Submission
 
@@ -258,7 +261,7 @@ If you do not make a submission tag, we will take the last commit on your master
 
 | Criteria    | Description |
 |:----------- |:----- |
-| <b>Automarking (40%)</b> | See Section 13. | 
+| <b>Automarking (40%)</b> | See Section 13. |
 | <b>Usability Testing (10%) | During the demonstration of your submission: <ul><li>Do the features you've implemented work as required?</li><li>Are the features implemented bug-free</li><li>Does your game provide the user with a good experience?</li> |
 | <b>Assumptions (5%)</b> | <ul><li>Are the assumptions provided of good quality?</li><li>Do they clear up genuine ambiguities in the spec?</li><li>Are there any key assumptions missing? Do the assumptions clarify a range of requirements?</li> |
 | <b>Software Design (30%)</b> | Things to consider include, but are not limited to: <ul><li>Have you made use of at least three design patterns taught?</li> <li>Do these patterns improve the design or are they forced on?</li> <li>Are the patterns modelled appropriately?</li> <li>Have you used the right patterns (e.g. state vs strategy)?</li> <li>Do your inheritance relationships make logical sense?</li> <li>Have you obeyed LSP?</li> <li>Have you used interfaces vs abstract classes appropriately?</li> <li>Are the aggregation and composition relationships and cardinalities shown on the UML logical and appropriate?</li> <li>Are all classes single responsibility? Is there a lot of logic in the main Game class(es) or is it split up?</li> <li>Are there any redundant classes / data classes?</li> <li>Have all the appropriate entities been modelled as classes, or is data grouped arbitrarily in JSON objects/strings/arrays?</li> <li>Is the UML diagram correctly formatted?</li><li>Is there a mix of unit, integration and system-level tests? Are your tests well designed and logically structured?</li><li><b>Code Style</b> - See Section 10.1</li></ul>|
@@ -306,7 +309,7 @@ If you do not make a submission tag, we will take the last commit on your master
 
 | Criteria    | Description |
 |:----------- |:----- |
-| <b>Automarking (40%)</b> | See Section 13. | 
+| <b>Automarking (40%)</b> | See Section 13. |
 | <b>Usability Testing (10%) | During the demonstration of your submission: <ul><li>Do the features you've implemented work as required?</li><li>Are the features implemented bug-free</li><li>Does your game provide the user with a good experience?</li><li>Have customisations been made which enhance the user experience?</li> |
 | <b>Assumptions (5%)</b> | <ul><li>Are the assumptions provided of good quality?</li><li>Do they clear up genuine ambiguities in the spec?</li><li>Are there any key assumptions missing? Do the assumptions clarify a range of requirements?</li> |
 | <b>Software Design (30%)</b> | Things to consider include, but are not limited to: <ul><li>How well have you adapted your design to suit the new requirements?</li><li>Have you made use of at least four design patterns taught?</li> <li>Do these patterns improve the design or are they forced on?</li> <li>Are the patterns modelled appropriately?</li> <li>Have you used the right patterns (e.g. state vs strategy)?</li> <li>Do your inheritance relationships make logical sense?</li> <li>Have you obeyed LSP?</li> <li>Have you used interfaces vs abstract classes appropriately?</li> <li>Are the aggregation and composition relationships and cardinalities shown on the UML logical and appropriate?</li> <li>Are all classes single responsibility? Is there a lot of logic in the main Game class(es) or is it split up?</li> <li>Are there any redundant classes / data classes?</li> <li>Have all the appropriate entities been modelled as classes, or is data grouped arbitrarily in JSON objects/strings/arrays?</li> <li>Is the UML diagram correctly formatted?</li><li>Is there a mix of unit, integration and system-level tests? Are your tests well designed and logically structured?</li><li><b>Code Style</b> - See Section 10.1</li></ul>|
@@ -333,7 +336,7 @@ The server layer then wraps these objects inside a `GenericResponseWrapper`, a g
 
 ```java
 public DungeonResponse(String dungeonId,
-                       String dungeonName, 
+                       String dungeonName,
                        List<EntityResponse> entities,
                        List<ItemResponse> inventory,
                        List<String> buildables,
@@ -402,7 +405,7 @@ Where <code>x</code>, <code>y</code> are the co-ordinates of the cell (the top-l
 <td>
 
 ```java
-public DungeonResponse newGame(String dungeonName, 
+public DungeonResponse newGame(String dungeonName,
     String gameMode)
 throws IllegalArgumentException
 ```
@@ -544,7 +547,8 @@ IllegalArgumentException:
 </ul>
 InvalidActionException
 <ul>
-<li>If the player is not cardinally adjacent to the given entity</li>
+<li>If the player is not within 2 cardinal tiles to the mercenary, if they are bribing</li>
+<li>If the player is not cardinally adjacent to the spawner, if they are destroying a spawner</li>
 <li>If the player does not have any gold and attempts to bribe a mercenary</li>
 <li>If the player does not have a weapon and attempts to destroy a spawner</li>
 </td>
@@ -685,7 +689,7 @@ Throughout Milestones 2 and 3, you will be assessed on the following:
 
 There is no late penalty, as we do not accept late submissions. You will be assessed on the most recent version of your work at the due date and time listed. We will automatically collect and the code that is tagged with the respective submission tag before the deadline. If you do not make a submission tag, we will simply take your last commit on `master` before the deadline.
 
-Any functionality that is incomplete that you wish your tutor to look at, you can put in a branch called `milestoneX-extra`. 
+Any functionality that is incomplete that you wish your tutor to look at, you can put in a branch called `milestoneX-extra`.
 
 ### 11.2. Demonstration
 
