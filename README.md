@@ -20,6 +20,7 @@
 - 19 Oct 9pm - Battles occur within a single tick
 - 21 Oct 2pm - Clarify buildables argument in DungeonResponse constructor
 - 22 Oct 9pm - More detail on save/load game, broaden allowable items usable in tick itemUsed
+- 24 Oct 4pm - Case where itemUsed is null in `tick`, clarify movement of enemies in peaceful mode
 
 ## 1. Aims
 
@@ -118,7 +119,7 @@ Each time a character wins a battle, there is a small chance of winning a "rare 
 
 ### 3.5 Buildable Entities
 
-Some entities can be built using a 'recipe' by the player, where entities are combined to form more complex and useful entities.
+Some entities can be built using a 'recipe' by the player, where entities are combined to form more complex and useful entities. 
 
 | Entity    | Image         | Description       |
 | --------- | --------------| ------------------|
@@ -142,7 +143,7 @@ Mercenaries have a battle radius. If the character is fighting an enemy within t
 
 There are three game modes:
 
-* **Peaceful**: Where enemies do not attack the character;
+* **Peaceful**: Where enemies do not attack the character, though move as they would otherwise;
 * **Standard**: Standard game rules;
 * **Hard**: Zombies spawn every 15 ticks instead of every 20 and the player has less health points to begin with, and invincibility potions have no effect.
 
@@ -489,7 +490,7 @@ Ticks the game state. When a tick occurs:
 <td>
 IllegalArgumentException:
 <ul>
-<li>If <code>itemUsed</code> is not a bomb, health_potion, invincibility_potion, or an invisibility_potion</li>
+<li>If <code>itemUsed</code> is not a bomb, health_potion, invincibility_potion, or an invisibility_potion, or null (if no item is being used)</li>
 </ul>
 InvalidActionException:
 <ul>
