@@ -22,6 +22,7 @@
 - 22 Oct 9pm - More detail on save/load game, broaden allowable items usable in tick itemUsed
 - 24 Oct 4pm - Case where itemUsed is null in `tick`, clarify movement of enemies in peaceful mode
 - 24 Oct 10pm - Mercenaries can be bribed from 2 tiles away, note on one ring + JSON prefixes for all entities
+- 26 Oct 8am - Add JSON types for goals
 
 ## 1. Aims
 
@@ -154,10 +155,10 @@ There are three game modes:
 
 In addition to its layout, each dungeon also has a goal that defines what must be achieved by the player for the dungeon to be considered complete. Basic goals are:
 
-* Getting to an exit;
-* Destroying all enemies and spawners;
-* Having a boulder on all floor switches;
-* Collecting all treasure;
+* Getting to an exit (`"exit"` in the JSON); 
+* Destroying all enemies and spawners (`"enemies"` in the JSON);
+* Having a boulder on all floor switches (`"boulders"` in the JSON);
+* Collecting all treasure (`"treasure"` in the JSON);
 
 More complex goals can be built by logically composing goals. For example:
 
