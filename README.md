@@ -23,6 +23,7 @@
 - 24 Oct 4pm - Case where itemUsed is null in `tick`, clarify movement of enemies in peaceful mode
 - 24 Oct 10pm - Mercenaries can be bribed from 2 tiles away, note on one ring + JSON prefixes for all entities
 - 26 Oct 8am - Add JSON types for goals
+- 27 Oct 10am - Winning and death output clarifications
 
 ## 1. Aims
 
@@ -139,7 +140,7 @@ Character Health = Character Health - ((Enemy Health * Enemy Attack Damage) / 10
 Enemy Health = Enemy Health - ((Character Health * Character Attack Damage) / 5)
 ```
 
-If the character's health is <= 0, then the character dies and the game is over. If the enemy's health is <= 0, then the enemy dies and is removed from the game. If after the above 'round', neither the character nor the enemy is dead, the round repeats until either the character or enemy is dead.
+If the character's health is <= 0, then the character dies, is removed from the game and the game is over. If the enemy's health is <= 0, then the enemy dies and is removed from the game. If after the above 'round', neither the character nor the enemy is dead, the round repeats until either the character or enemy is dead.
 
 Mercenaries have a battle radius. If the character is fighting an enemy within the battle radius of a mercenary, the mercenary moves twice as fast to take advantage. If the mercenary has been bribed to become an ally, the ally will fight in the battle against the enemy with the character from a distance; the enemy health is decreased twice in a single round, substituting the character's statistics with the ally's statistics in the above formula.
 
@@ -155,7 +156,7 @@ There are three game modes:
 
 In addition to its layout, each dungeon also has a goal that defines what must be achieved by the player for the dungeon to be considered complete. Basic goals are:
 
-* Getting to an exit (`"exit"` in the JSON); 
+* Getting to an exit (`"exit"` in the JSON);
 * Destroying all enemies and spawners (`"enemies"` in the JSON);
 * Having a boulder on all floor switches (`"boulders"` in the JSON);
 * Collecting all treasure (`"treasure"` in the JSON);
@@ -346,7 +347,7 @@ public DungeonResponse(String dungeonId,
 
 </td>
 <td>
-Where <code>dungeonId</code> is the unique identifier for the dungeon, <code>dungeonName</code> is the name of the dungeon map being used (i.e. `maze.json`), and <code>buildables</code> is a list of buildable item types that the player can build, given their current inventory.
+Where <code>dungeonId</code> is the unique identifier for the dungeon, <code>dungeonName</code> is the name of the dungeon map being used (i.e. `maze.json`), and <code>buildables</code> is a list of buildable item types that the player can build, given their current inventory. <code>goals</code> is a string containing the goals yet to be completed (see Section 9). An empty string denotes the game has been won.
 </td>
 
 <tr>
