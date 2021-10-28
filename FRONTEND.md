@@ -56,8 +56,6 @@ public DungeonResponse newGame(String dungeonName, String gameMode) throws Illeg
     List<EntityResponse> entities = new ArrayList<>();
     
     // let's generate some walls
-    // all maps have to be fully surrounded by walls
-    // so the map we'll genreate is going to be
     /**
         * 
         *  WWWWW
@@ -267,59 +265,92 @@ Once a randomised track has finished it'll randomly pick the next one to play.  
 
 ### Animations
 
-You may want to introduce different sounds based on different scenarios for example having different sounds for building different weapons, or having different attacking noises/damage noises for entities.
+Animations are a useful part of a modern application, and the frontend has (albeit limited) support for them.  Animations are defined *on* an entity and persist for the specified frame.
 
-The way this is done is through the animation queue system this can be done during the `DungeonManiaController::tick(...)` result which allows you to specify an animation queue.
+## A simple health bar
 
-The animation queue is a very simple list of animations which is executed from top to bottom, waiting a minimum of the specified delay before executing the next action in the animation queue.
+Taking the example from before we can generate a very simple healthbar as follows;
 
-For example;
-
-```javascript
-[
-    {
-        "when": "Movement", // when should you apply this (for this tick)
-        "entityId": "1c45198b-b5d4-4388-8e24-905db39760c8", // the unique entity id to apply this to
-        "queue": [,
-            "sprite '/images/character-001.png', wait 0.16s"
-            "sprite '/images/character-002.png', wait 0.16s",
-            "sprite '/images/character-003.png', wait 0.16s",
-            "sprite '/images/character-004.png', wait 0.16s",
-            "sprite '/images/character-005.png', wait 0.16s",
-            "sprite '/images/character-006.png', wait 0.16s"
-        ],
-        "loop": true,   // loop the animation frames till it finishes
-        "duration": 2,  // the duration of the animation.
-    }
-]
+```java
+public DungeonResponse newGame(String dungeonName, String gameMode) throws IllegalArgumentException {
+        List<EntityResponse> entities = new ArrayList<>();
+    
+        // let's generate some walls
+        /**
+            * 
+            *  WWWWW
+            *  W P W
+            *  W D W
+            *  WWWWW
+            * 
+            * where P is the player, D is a door, and W is some walls
+            */
+    
+        for (int x = 0; x < 5; x++) {
+            for (int y = 0; y < 4; y++) {
+                if (x == 0 || y == 0 || x == 4 || y == 3) {
+                    // only generate borders
+                    entities.add(new EntityResponse("entity-" + x + " - " + y, "wall", new Position(x, y, 2), false));
+                }
+            }
+        }
+    
+        // now to add the player and coin
+        entities.add(new EntityResponse("entity-player", "player", new Position(2, 1, 2), false));
+    
+        List<AnimationQueue> animations = new ArrayList<>();
+        // Arguments are;
+        // - when (unused for now, just specify "PostTick")
+        // - entityId (unique id that corresponds to what entity you want to animate)
+        // - queue (queue of actions)
+        // - loop (do you want the animation to loop)
+        // - duration (how long do you want the animation to last, any negative value is infinite)
+    
+        // In this case it creates 2 animations on the player
+        // the first one sets the healthbar to 0.8 (from 0 to 1 inclusive)
+        // the second animates the healthbar down to 0.5 over a period of 0.5 seconds
+        // The format is specified strictly in the next section.
+        animations.add(new AnimationQueue("PostTick", "entity-player", Arrays.asList(
+            "healthbar set 0.8", "healthbar tint 0x00ff00", "healthbar set 0.2, over 1.5s", "healthbar tint 0xff0000, over 0.5s"
+        ), false, -1));
+    
+        // To make it a bit more interesting we'll tint the player green and shake the healthbar
+        // 'shake' will apply some random rotation/scale, '0x00ff00' is green.
+        // these effects will last 0.5s
+        animations.add(new AnimationQueue("PostTick", "entity-player", Arrays.asList("healthbar shake, over 0.5s, ease Sin", "tint 0x00ff00"), false, 0.5));
+        
+        return new DungeonResponse("some-random-id", dungeonName, entities, Arrays.asList(new ItemResponse("item-1", "bow"), new ItemResponse("item-2", "sword")), new ArrayList<>(), "", animations);
+}
 ```
 
-> `loop`/`duration` are optional and have the default values of `false`/`0` respectively (a `0` duration will just wait a single loop regardless of the value of `loop`).
-> All animations have to be finished before control is given back to the player so ensure your durations are reasonably small.
+> NOTE: You'll notice that you are creating the animations *EVERY* time.  Think about how you can abstract this nicely.
 
-The following operations can be performed;
+This results in the following (gif below);
 
-- `sprite '{sprite}'` changes the sprite that is currently used
-- `audioClip '{clip}'` plays the audio clip specified
-- `tint {hex}` tints the sprite to the hexcode specified
-- `rotate {degrees}` rotates the sprite by the number of degrees specified
-- `scale {ratio}` scales the entity by the specified ratio
-- `translate ({x}, {y}, {z})` translates the sprite by the specified amount
-    - `x` and `y` is a ratio proportional to the current pixel scaling where `1` is the pixel resolution (default `16`)
-    - `z` however is an integer and will move the entity through the specified layers.  z translations occur immediately.
-    - If the entity is currently in a battle the `y` axis will cause the entity to move vertically up where as the `x` axis acts horizontally.  Changing `z` has no effect.
+<img src="frontend/healthbar.gif" />
 
-Furthermore, you can apply the following modifiers to the end of any operation
+## A more detailed specification
 
-- `, wait {duration}s` wait for the duration (in seconds) before starting the next action, default is one tick (approximately `16`ms or `0.016`s)
-- `, over {duration}s` perform the operation over the given duration (in seconds).  Is not valid for `sprite`
+An animation queue is a very *trivial* set of actions that can be performed on entities.  The class structure is as follows;
 
-You can combine multiple modifiers into one i.e. `translate (1, 2, 0), over 1s, wait 0.16` will translate the entity over 1s but will only wait `0.16`s before running the next action.
+```java
+public class AnimationQueue {
+    /** _when_ should this animation play?  Currently unused, but should be "PostTick" */
+    private final String when;
 
-| :warning:  We provide a minimal structure to help you do this, since a major part of writing the code here should be focused on the design of how to cleanly write animation state.  We provide the expected response in `src/main/dungeonmania/response/models/AnimationQueue.java` but you should design how you build this queue. |
-| --- |
+    /** The entity to perform this on */
+    private final String entityId;
 
-### AnimationQueue
+    /** List of actions to perform (more info below) */
+    private final List<String> queue;
+
+    /** If true, will repeat all animations once all in queue are completed. */
+    private final boolean loop;
+
+    /** If loop is specified, will repeat animation until total elapsed is approximately specified duration */
+    private final double duration;
+}
+```
 
 > AnimationQueue.java
 
@@ -334,3 +365,29 @@ public DungeonResponse(String dungeonId, String dungeonName, List<EntityResponse
             List<ItemResponse> inventory, List<ItemResponse> buildables, String goals,
             List<AnimationQueue> animations)
 ```
+
+### All Possible Actions
+
+You'll probably be using really just entityId/queue to setup unique animations.
+
+Actions within a queue use spaces and commas to separate arguments, so make sure you match the format exactly.  Actions are 'interpolated' (transitions between the old and new states).
+
+The following are all the available commands for healthbar;
+
+- `healthbar` manipulate the healthbar in some way...
+  - `healthbar set <amount>` will set the healthbar progress, amount has to be in the region `0 <= amount <= 1`
+  - `healthbar shake` shakes the healthbar
+  - `healthbar scale <amount>` scales the healthbar to the amount specified
+  - `healthbar tint <color>` sets the color of the healthbar to the hexcode specified i.e. `0xff00ff`
+
+The following are all the available commands for entities in general;
+
+- `sprite <entity-type>` override the sprite used, will ignore both `ease` and `over` modifiers.  Looks up the sprite through the entities mapping in default.json
+- `tint <hex>` tints a sprite to the specified hexcode colour.
+- `rotate <degrees>` rotates sprite by specified degrees
+- `scale <ratio>` will set the entities scale to the specified ratio.
+- `scale-x <ratio>` will set the entities horizontal scale to the specified ratio.
+- `scale-y <ratio>` will set the entities vertical scale to the specified ratio.
+- `translate-x <x>` will translate the entity along the x-axis.
+- `translate-y <x>` will translate the entity along the y-axis.
+- `translate-layer <layer>` allows you to change the entities layer to place it above other entities visually.
