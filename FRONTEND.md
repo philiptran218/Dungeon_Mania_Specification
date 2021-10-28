@@ -314,10 +314,10 @@ public DungeonResponse newGame(String dungeonName, String gameMode) throws Illeg
             "healthbar set 0.8", "healthbar tint 0x00ff00", "healthbar set 0.2, over 1.5s", "healthbar tint 0xff0000, over 0.5s"
         ), false, -1));
     
-        // To make it a bit more interesting we'll tint the player green and shake the healthbar
+        // To make it a bit more interesting we'll shake the healthbar
         // 'shake' will apply some random rotation/scale, '0x00ff00' is green.
         // these effects will last 0.5s
-        animations.add(new AnimationQueue("PostTick", "entity-player", Arrays.asList("healthbar shake, over 0.5s, ease Sin", "tint 0x00ff00"), false, 0.5));
+        animations.add(new AnimationQueue("PostTick", "entity-player", Arrays.asList("healthbar shake, over 0.5s, ease Sin"), false, 0.5));
         
         return new DungeonResponse("some-random-id", dungeonName, entities, Arrays.asList(new ItemResponse("item-1", "bow"), new ItemResponse("item-2", "sword")), new ArrayList<>(), "", animations);
 }
