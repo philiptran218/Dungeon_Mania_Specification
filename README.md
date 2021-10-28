@@ -25,6 +25,7 @@
 - 26 Oct 8am - Add JSON types for goals
 - 27 Oct 10am - Winning and death output clarifications
 - 28 Oct 1pm - Remove out of date explanation of automarking formula
+- 29 Oct 4am - Frontend updated with nicer animation support
 
 ## 1. Aims
 
