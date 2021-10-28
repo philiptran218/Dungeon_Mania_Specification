@@ -329,6 +329,28 @@ This results in the following (gif below);
 
 <img src="frontend/healthbar.gif" />
 
+### A more crazy example!
+
+Replace the animation creation code with the following.  In this case we keep the healthbar but cause it to loop for 10s before stopping.
+
+```java
+        animations.add(new AnimationQueue("PostTick", "entity-player", Arrays.asList(
+            "healthbar set 0.8", "healthbar tint 0x00ff00", "healthbar set 0.2, over 1.5s", "healthbar tint 0xff0000, over 0.5s"
+        ), true, 10));
+    
+        // To make it a bit more interesting we'll tint the player red and shake the healthbar
+        // 'shake' will apply some random rotation/scale, '0xff0000' is red.
+        // these effects will last 0.5s
+        animations.add(new AnimationQueue("PostTick", "entity-player", Arrays.asList("healthbar shake, over 0.5s, ease Sin", "tint 0x00ff00", "translate-x 1, over 2s", "sprite boulder"), false, 0.5));
+```
+
+> Notice how the healthbar follows the player, as it gets translated around.
+
+<img src="frontend/output.gif" />
+
+| :warning:  NOTE: If processing movement, it's recommended that you return the final position in the entity response object, and then process movement by doing a translation (of duration 0s) back to the old position then translate them back to the final position.  i.e. `translate-x -1, over 0s` followed by `translate-x 1, over 2s` |
+| --- |
+
 ## A more detailed specification
 
 An animation queue is a very *trivial* set of actions that can be performed on entities.  The class structure is as follows;
