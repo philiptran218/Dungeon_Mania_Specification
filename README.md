@@ -24,6 +24,7 @@
 - 24 Oct 10pm - Mercenaries can be bribed from 2 tiles away, note on one ring + JSON prefixes for all entities
 - 26 Oct 8am - Add JSON types for goals
 - 27 Oct 10am - Winning and death output clarifications
+- 28 Oct 1pm - Remove out of date explanation of automarking formula
 
 ## 1. Aims
 
@@ -745,8 +746,6 @@ If, due to exceptional circumstances, you are unable to attend your lab for a de
 After Milestones 2 and 3 are submitted, we will run a series of autotests against your server. The calculation of the automark will be according to the following formula:
 
 `Automark = ((2 * i * c) / (i + c)) * 90 + i * 10`
-
-(Mark equals t multiplied by i multiplied by the maximum of c + 1 and 100 to the power of three). This formula produces a value between 0 and 1.
 
 Where:
 
