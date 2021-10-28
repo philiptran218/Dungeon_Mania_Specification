@@ -331,16 +331,15 @@ This results in the following (gif below);
 
 ### A more crazy example!
 
-Replace the animation creation code with the following.  In this case we keep the healthbar but cause it to loop for 10s before stopping.
+Replace the animation creation code with the following.  In this case we keep the healthbar but cause it to loop for 10s before stopping, as well as swapping the player sprite out and moving them along the x-axis.
 
 ```java
         animations.add(new AnimationQueue("PostTick", "entity-player", Arrays.asList(
             "healthbar set 0.8", "healthbar tint 0x00ff00", "healthbar set 0.2, over 1.5s", "healthbar tint 0xff0000, over 0.5s"
         ), true, 10));
     
-        // To make it a bit more interesting we'll tint the player red and shake the healthbar
-        // 'shake' will apply some random rotation/scale, '0xff0000' is red.
-        // these effects will last 0.5s
+        // In this case, we'll replace the player with a boulder, and move it horizontally across slowly.
+        // You could play an animation by swapping out sprites as it moves.
         animations.add(new AnimationQueue("PostTick", "entity-player", Arrays.asList("healthbar shake, over 0.5s, ease Sin", "tint 0x00ff00", "translate-x 1, over 2s", "sprite boulder"), false, 0.5));
 ```
 
