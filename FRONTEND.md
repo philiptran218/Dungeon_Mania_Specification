@@ -388,6 +388,6 @@ The following are all the available commands for entities in general;
 - `scale <ratio>` will set the entities scale to the specified ratio.
 - `scale-x <ratio>` will set the entities horizontal scale to the specified ratio.
 - `scale-y <ratio>` will set the entities vertical scale to the specified ratio.
-- `translate-x <x>` will translate the entity along the x-axis.
-- `translate-y <x>` will translate the entity along the y-axis.
-- `translate-layer <layer>` allows you to change the entities layer to place it above other entities visually.
+- `translate-x <x>` will translate the entity along the x-axis, scales such that `translate-x 1 == resolution`
+- `translate-y <x>` will translate the entity along the y-axis, scales such that `translate-x 1 == resolution`
+- `set-layer <layer>` allows you to change the entities layer to place it above other entities visually.  This *SETS* the layer.
