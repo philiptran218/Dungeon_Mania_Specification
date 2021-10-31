@@ -26,6 +26,7 @@
 - 27 Oct 10am - Winning and death output clarifications
 - 28 Oct 1pm - Remove out of date explanation of automarking formula
 - 29 Oct 4am - Frontend updated with nicer animation support
+- 31 Oct 2pm - Extended deadline for M1+2 to Monday Week 8 3pm
 
 ## 1. Aims
 
@@ -685,7 +686,7 @@ Throughout Milestones 2 and 3, you will be assessed on the following:
 
 |Milestone|Due date                             |Demonstration to tutor(s)      |Assessment weighting of project (%)|
 |---------|-------------------------------------|-------------------------------|-----------------------------------|
-|  1 + 2  |10am Monday 1st November (**Week 8**)   |In YOUR **Week 8** laboratory  | 50%                                |
+|  1 + 2  |3pm Monday 1st November (**Week 8**)   |In YOUR **Week 8** laboratory  | 50%                                |
 |   3     |10am Monday 15th November (**Week 10**)   |In YOUR **Week 10** laboratory | 50%                                |
 
 
