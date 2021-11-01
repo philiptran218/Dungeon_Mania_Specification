@@ -27,6 +27,7 @@
 - 28 Oct 1pm - Remove out of date explanation of automarking formula
 - 29 Oct 4am - Frontend updated with nicer animation support
 - 31 Oct 2pm - Extended deadline for M1+2 to Monday Week 8 3pm
+- 2 Nov 11am - Release Milestone 3
 
 ## 1. Aims
 
@@ -54,7 +55,9 @@ Furthermore, there is a rival company called Spheniscidae Pty Ltd which has alre
 | :warning:  As with any software, bugs could and will exist in the reference implementation.  Furthermore, the project is *VERY* vague and a lot is left up to interpretation (intentionally so).  Don't take our interpretations as gospel.  Also a lot of UX improvements such as animations were left out in our implementation just due to the fact that it's very much a 'baseline'. |
 | --- |
 
-[There are setup instructions here](SETUP.md)
+There is no sample implementation for the Milestone 3 requirements.
+
+[There are setup instructions here](SETUP.md).
 
 ## 3. Requirements: The Rules of the Game
 
@@ -274,7 +277,9 @@ If you do not make a submission tag, we will take the last commit on your master
 
 ## 6. Milestone 3: Evolution of Requirements
 
-Like any real-world programming scenario, the requirements you need to develop to will evolve. **When Milestone 3 is released, you will be able to view the [updated requirements in this document]().**
+Like any real-world programming scenario, the requirements you need to develop to will evolve.
+
+[**You can view the updated requirements for Milestone 3 here**](M3.md).
 
 In this Milestone, you are expected to:
 
@@ -317,10 +322,10 @@ If you do not make a submission tag, we will take the last commit on your master
 | <b>Automarking (40%)</b> | See Section 13. |
 | <b>Usability Testing (10%) | During the demonstration of your submission: <ul><li>Do the features you've implemented work as required?</li><li>Are the features implemented bug-free</li><li>Does your game provide the user with a good experience?</li><li>Have customisations been made which enhance the user experience?</li> |
 | <b>Assumptions (5%)</b> | <ul><li>Are the assumptions provided of good quality?</li><li>Do they clear up genuine ambiguities in the spec?</li><li>Are there any key assumptions missing? Do the assumptions clarify a range of requirements?</li> |
-| <b>Software Design (30%)</b> | Things to consider include, but are not limited to: <ul><li>How well have you adapted your design to suit the new requirements?</li><li>Have you made use of at least four design patterns taught?</li> <li>Do these patterns improve the design or are they forced on?</li> <li>Are the patterns modelled appropriately?</li> <li>Have you used the right patterns (e.g. state vs strategy)?</li> <li>Do your inheritance relationships make logical sense?</li> <li>Have you obeyed LSP?</li> <li>Have you used interfaces vs abstract classes appropriately?</li> <li>Are the aggregation and composition relationships and cardinalities shown on the UML logical and appropriate?</li> <li>Are all classes single responsibility? Is there a lot of logic in the main Game class(es) or is it split up?</li> <li>Are there any redundant classes / data classes?</li> <li>Have all the appropriate entities been modelled as classes, or is data grouped arbitrarily in JSON objects/strings/arrays?</li> <li>Is the UML diagram correctly formatted?</li><li>Is there a mix of unit, integration and system-level tests? Are your tests well designed and logically structured?</li><li><b>Code Style</b> - See Section 10.1</li></ul>|
-| <b>Project Management & Git Practices (15%)</b> | <ul><li>Are the tasks on the timeline sequenced logically? (e.g. prerequisite features are completed first)</li><li>Are tasks allocated to all team members approx equally?</li><li>Do the task allocations seem feasible?</li><li>Is the allocation logical?</li><li>Are these timespans on tasks reasonable?</li><li>Have you demonstrated the use of meeting minutes? Version history is needed to show that the minutes weren't faked.</li><li>Commit messages are meaningful, aren't repeated, evidence of merge requests into master, master is merged into regularly</li></li><li>The board shows the truth of the team's progress, tasks are assigned and moved across the columns</li></ul> |
+| <b>Software Design (35%)</b> | Things to consider include, but are not limited to: <ul><li>How well have you adapted your design to suit the new requirements?</li><li>Have you made use of at least four design patterns taught?</li> <li>Do these patterns improve the design or are they forced on?</li> <li>Are the patterns modelled appropriately?</li> <li>Have you used the right patterns (e.g. state vs strategy)?</li> <li>Do your inheritance relationships make logical sense?</li> <li>Have you obeyed LSP?</li> <li>Have you used interfaces vs abstract classes appropriately?</li> <li>Are the aggregation and composition relationships and cardinalities shown on the UML logical and appropriate?</li> <li>Are all classes single responsibility? Is there a lot of logic in the main Game class(es) or is it split up?</li> <li>Are there any redundant classes / data classes?</li> <li>Have all the appropriate entities been modelled as classes, or is data grouped arbitrarily in JSON objects/strings/arrays?</li> <li>Is the UML diagram correctly formatted?</li><li>Is there a mix of unit, integration and system-level tests? Are your tests well designed and logically structured?</li><li><b>Code Style</b> - See Section 10.1</li></ul>|
+| <b>Project Management & Git Practices (10%)</b> | <ul><li>Are the tasks on the timeline sequenced logically? (e.g. prerequisite features are completed first)</li><li>Are tasks allocated to all team members approx equally?</li><li>Do the task allocations seem feasible?</li><li>Is the allocation logical?</li><li>Are these timespans on tasks reasonable?</li><li>Have you demonstrated the use of meeting minutes? Version history is needed to show that the minutes weren't faked.</li><li>Commit messages are meaningful, aren't repeated, evidence of merge requests into master, master is merged into regularly</li></li><li>The board shows the truth of the team's progress, tasks are assigned and moved across the columns</li></ul> |
 
-## 7. Interface
+## 7. Interface (Milestone 2)
 
 The layer of abstraction is at the level of the controller. In the starter code, we have provided a class `DungeonManiaController` within which you will need to place the methods listed in 7.2 that act as the endpoints of the Abstract Data Type (your backend model).
 
