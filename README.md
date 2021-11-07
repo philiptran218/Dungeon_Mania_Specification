@@ -28,6 +28,7 @@
 - 29 Oct 4am - Frontend updated with nicer animation support
 - 31 Oct 2pm - Extended deadline for M1+2 to Monday Week 8 3pm
 - 2 Nov 11am - Release Milestone 3
+- 8 Nov 11am - Sceptre used via interact method
 
 ## 1. Aims
 
@@ -548,7 +549,7 @@ throws IllegalArgumentException, InvalidActionException
 
 </td>
 <td>
-Interacts with a mercenary (where the character bribes the mercenary) or a zombie spawner, where the character destroys the spawner.
+Interacts with a mercenary (where the character bribes the mercenary or mind-controls a mercenary) or a zombie spawner, where the character destroys the spawner.
 </td>
 <td>
 IllegalArgumentException:
@@ -559,7 +560,7 @@ InvalidActionException
 <ul>
 <li>If the player is not within 2 cardinal tiles to the mercenary, if they are bribing</li>
 <li>If the player is not cardinally adjacent to the spawner, if they are destroying a spawner</li>
-<li>If the player does not have any gold and attempts to bribe a mercenary</li>
+<li>If the player does not have any gold/sun stones/a sceptre and attempts to bribe/mind-control a mercenary</li>
 <li>If the player does not have a weapon and attempts to destroy a spawner</li>
 </td>
 </tr>
