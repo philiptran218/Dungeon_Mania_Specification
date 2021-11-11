@@ -28,6 +28,7 @@
 - 29 Oct 4am - Frontend updated with nicer animation support
 - 31 Oct 2pm - Extended deadline for M1+2 to Monday Week 8 3pm
 - 2 Nov 11am - Release Milestone 3
+- 12 Nov 10am - Specify priority for sun stone, remove bad sceptre update
 
 ## 1. Aims
 
