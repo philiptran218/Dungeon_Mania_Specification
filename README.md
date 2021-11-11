@@ -560,7 +560,7 @@ InvalidActionException
 <ul>
 <li>If the player is not within 2 cardinal tiles to the mercenary, if they are bribing</li>
 <li>If the player is not cardinally adjacent to the spawner, if they are destroying a spawner</li>
-<li>If the player does not have any gold/sun stones/a sceptre and attempts to bribe/mind-control a mercenary</li>
+<li>If the player does not have any gold/sun stones and attempts to bribe/mind-control a mercenary</li>
 <li>If the player does not have a weapon and attempts to destroy a spawner</li>
 </td>
 </tr>
