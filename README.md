@@ -28,7 +28,6 @@
 - 29 Oct 4am - Frontend updated with nicer animation support
 - 31 Oct 2pm - Extended deadline for M1+2 to Monday Week 8 3pm
 - 2 Nov 11am - Release Milestone 3
-- 8 Nov 11am - Sceptre used via interact method
 
 ## 1. Aims
 
